@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomePage = () => {
   return (
     <section className="slider_section">
@@ -15,17 +17,11 @@ const HomePage = () => {
                   <div className="col-md-12">
                     <div className="text-bg">
                       <span>The Best</span>
-                      <h1>MUSIC BAND EVER</h1>
+                      <h1>MUSICAL INSTRUMENTS</h1>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is
-                        that it has a more-or-less normal distribution of
-                        letters, as opposed to using 'Content here, content
-                        here', making it look
+                        The finest instruments - handmade and handtuned.
                       </p>
-                      <a href="#">Music & Entertainment</a>{" "}
-                      <a href="#">Buy Tickets </a>
+                      <Link to="products">Music & Entertainment Products</Link>
                     </div>
                   </div>
                 </div>
@@ -38,18 +34,12 @@ const HomePage = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="text-bg">
-                      <span>The Best</span>
-                      <h1>MUSIC BAND EVER</h1>
+                      <span>Amazing Concerts</span>
+                      <h1>TICKETS</h1>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is
-                        that it has a more-or-less normal distribution of
-                        letters, as opposed to using 'Content here, content
-                        here', making it look
+                        Reserve and buy tickets for the best shows
                       </p>
-                      <a href="#">Music & Entertainment</a>
-                      <a href="#">Buy Tickets </a>
+                      <Link to="tickets">Tickets</Link>
                     </div>
                   </div>
                 </div>
@@ -63,18 +53,12 @@ const HomePage = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="text-bg">
-                      <span>The Best</span>
-                      <h1>MUSIC BAND EVER</h1>
+                      <span>Read our customers</span>
+                      <h1>Stories</h1>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when
-                        looking at its layout. The point of using Lorem Ipsum is
-                        that it has a more-or-less normal distribution of
-                        letters, as opposed to using 'Content here, content
-                        here', making it look
+                        
                       </p>
-                      <a href="#">Music & Entertainment</a>{" "}
-                      <a href="#">Buy Tickets </a>
+                      <Link to="share-your-story">Share stories</Link>
                     </div>
                   </div>
                 </div>

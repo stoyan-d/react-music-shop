@@ -1,4 +1,4 @@
- import './ContactUs.css'
+import "./ContactUs.css";
 
 const ContactUs = () => {
   return (
@@ -50,19 +50,21 @@ const ContactUs = () => {
             </div>
           </form>
         </div>
-        <div className="col-md-12 border_top">
-          <form className="news">
-            <h3>Newsletter</h3>
-            <input
-              className="newslatter"
-              placeholder="ENTER YOUR MAIL"
-              type="text"
-              name=" ENTER YOUR MAIL"
-            />
-            <button className="submit">Subscribe</button>
-          </form>
+        <div class="row mapouter">
+          <div class="gmap_canvas">
+            <iframe
+              width="800"
+              height="500"
+              id="gmap_canvas"
+              src="https://maps.google.com/maps?q=Plovdiv&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+            ></iframe>
+          </div>
         </div>
-        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 social-media-box">
           <div className="row">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
               <div className="address">
@@ -77,13 +79,13 @@ const ContactUs = () => {
                     <a href="#">
                       <img src="icon/call.png" alt="#" />
                     </a>
-                    +12586954775{" "}
+                    +123123123123
                   </li>
                   <li>
                     <a href="#">
                       <img src="icon/email.png" alt="#" />
                     </a>
-                    demo@gmail.com{" "}
+                    doNotTryThisEmail@gmail.com
                   </li>
                 </ul>
               </div>
