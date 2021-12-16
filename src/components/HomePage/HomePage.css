@@ -1,0 +1,35 @@
+.carousel-control-prev {
+  background: #f9f9f9;
+  border: 2px solid black !important;
+  top: 45% !important;
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+  border-radius: 40px;
+  box-shadow: #000 0px 0px 7px -3px;
+}
+
+.carousel-control-next {
+  background: #f9f9f9;
+  border: 2px solid black !important;
+  top: 45% !important;
+  width: 70px;
+  font-size: 20px;
+  height: 70px;
+  border-radius: 40px;
+  box-shadow: #000 0px 0px 7px -3px;
+}
+
+.carousel-control-prev:hover {
+  background-color: lightblue !important;
+}
+.carousel-caption {
+  position: inherit;
+  top: 45%;
+}
+
+.carousel-dark .carousel-indicators button {
+  background: lightblue !important;
+  border-radius: 15px;
+  padding: 8px 22px;
+}

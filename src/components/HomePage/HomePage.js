@@ -1,90 +1,47 @@
 import { Link } from "react-router-dom";
+import { Carousel } from "react-bootstrap";
+import CarouselSlide from "./CarouselSlide/CarouselSlide";
+import './HomePage.css';
 
 const HomePage = () => {
   return (
-    <section className="slider_section">
-      <div id="myCarousel" className="carousel slide" data-ride="carousel">
-        <ol className="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <div className="container">
-              <div className="carousel-caption">
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="text-bg">
-                      <span>The Best</span>
-                      <h1>MUSICAL INSTRUMENTS</h1>
-                      <p>
-                        The finest instruments - handmade and handtuned.
-                      </p>
-                      <Link to="products">Music & Entertainment Products</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="container ">
-              <div className="carousel-caption">
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="text-bg">
-                      <span>Amazing Concerts</span>
-                      <h1>TICKETS</h1>
-                      <p>
-                        Reserve and buy tickets for the best shows
-                      </p>
-                      <Link to="tickets">Tickets</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="carousel-item">
-            <div className="container">
-              <div className="carousel-caption ">
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="text-bg">
-                      <span>Read our customers</span>
-                      <h1>Stories</h1>
-                      <p>
-                        
-                      </p>
-                      <Link to="share-your-story">Share stories</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <a
-          className="carousel-control-prev"
-          href="#myCarousel"
-          role="button"
-          data-slide="prev"
-        >
-          <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#myCarousel"
-          role="button"
-          data-slide="next"
-        >
-          <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
-    </section>
+    <Carousel variant="dark">
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://docs.google.com/uc?export=download&id=1RvRwJBFAPwd2KfGyOibJKPVYSeT1PYrA"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://docs.google.com/uc?export=download&id=1RvRwJBFAPwd2KfGyOibJKPVYSeT1PYrA"
+          alt="Second slide"
+        />
+        <Carousel.Caption>
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://docs.google.com/uc?export=download&id=1RvRwJBFAPwd2KfGyOibJKPVYSeT1PYrA"
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+          <h5>Third slide label</h5>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
   );
 };
 

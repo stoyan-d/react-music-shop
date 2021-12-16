@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useNotificationContext, types } from "../../contexts/NotificationContext";
 import * as authService from '../../services/authService';
 
 const Register = () => {
   const navigate = useNavigate();
+  const { addNotification } = useNotificationContext();
+  
   const { login } = useAuthContext();
 
   const registerHandler = (e) => {
@@ -14,7 +17,11 @@ const Register = () => {
 
     authService.register(email, password).then((authData) => {
       login(authData);
+      addNotification('You registered successfully', types.success);
       navigate("/home");
+    })
+    .catch(err => {
+      addNotification(err, 'Register unsuccessful');
     });
   };
 

@@ -22,9 +22,8 @@ const AddNewCategory = () => {
     }
 
     categoriesService.create(requestData, user.accessToken).then((authData) => {
-      navigate("/products");
+      navigate("/categories");
     });
-
   };
 
   return (

@@ -42,3 +42,12 @@
   width: 100%;
 }
 
+.categories-head-wrapper {
+  padding: 30px;
+}
+
+.categories-title {
+  font-size: 36px;
+  color: white;
+  text-align: center;
+}

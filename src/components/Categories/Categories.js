@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+import CategoryCard from "./CategoryCard";
 import * as categoriesService from "../../services/categoriesService";
-import "./Products.css";
+import "./Categories.css";
 import { Link } from "react-router-dom";
 
-const Products = () => {
+const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,12 @@ const Products = () => {
   }, []);
   return (
     <>
-      <h2 className="products-title">See our current categories or</h2>
-      <div className="col-md-12">
-        <div className="text-bg">
-          <Link to="add-category">Add New One</Link>
+      <div className="categories-head-wrapper">
+        <h2 className="categories-title">See our current categories or</h2>
+        <div className="col-md-12">
+          <div className="text-bg">
+            <Link to="add-category">Add New One</Link>
+          </div>
         </div>
       </div>
       <div id="gallery" className="Gallery">
@@ -26,7 +28,7 @@ const Products = () => {
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
               <div className="row">
                 {categories.map((x) => (
-                  <ProductCard key={x._id} categoryData={x} />
+                  <CategoryCard key={x._id} categoryData={x} />
                 ))}
               </div>
             </div>
@@ -37,4 +39,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Categories;

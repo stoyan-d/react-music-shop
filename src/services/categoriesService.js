@@ -26,29 +26,17 @@ export const create = async (categoryData, token) => {
     return result;
 };
 
-// export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
+export const getOne = (categoryId, signal) => {
+    return fetch(`${baseUrl}/${collection}/${categoryId}`, { signal })
+        .then(res => res.json())
+};
 
-// export const getOne = (petId, signal) => {
-//     return fetch(`${baseUrl}/pets/${petId}`, { signal })
-//         .then(res => res.json())
-// };
+export const destroy = (petId, token) => {
+    return fetch(`${baseUrl}/pets/${petId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': token
+        }
+    }).then(res => res.json());
+};
 
-// export const destroy = (petId, token) => {
-//     return fetch(`${baseUrl}/pets/${petId}`, {
-//         method: 'DELETE',
-//         headers: {
-//             'X-Authorization': token
-//         }
-//     }).then(res => res.json());
-// };
-
-// export const like = (petId, pet, token) => {
-//     return fetch(`${baseUrl}/pets/${petId}`, {
-//         method: 'PUT',
-//         headers: {
-//             'content-type': 'application/json',
-//             'X-Authorization': token
-//         },
-//         body: JSON.stringify(pet)
-//     }).then(res => res.json());
-// };

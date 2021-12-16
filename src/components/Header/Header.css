@@ -105,61 +105,35 @@
     font-weight: normal;
     color: #000;
   }
-  .carousel-indicators {
+  /* .carousel-indicators {
     left: inherit;
     top: 40%;
     margin-right: 2%;
     display: block;
-  }
-  .carousel-caption {
-    position: inherit;
-  }
+  } */
+  /* 
   .carousel-indicators {
     display: none;
-  }
+  } */
   
   .padding_dd {
     padding: 0px 50px;
   }
   
-  .carousel-control-prev i {
-    background: #f9f9f9;
-    color: #03daee;
-    width: 70px;
-    height: 70px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    box-shadow: #000 0px 0px 7px -3px;
-  }
-  .carousel-control-next i {
-    background: #f9f9f9;
-    color: #03daee;
-    width: 70px;
-    font-size: 20px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    box-shadow: #000 0px 0px 7px -3px;
-  }
   
-  .carousel-control-next,
+  /* .carousel-control-next,
   .carousel-control-prev {
     bottom: -63%;
     top: inherit;
     z-index: 999;
     opacity: 1;
-  }
-  .carousel-control-prev {
+  } */
+  /* .carousel-control-prev {
     left: 40%;
   }
   .carousel-control-next {
     right: 40%;
-  }
+  } */
 
 .logo_section {
   text-align: center;

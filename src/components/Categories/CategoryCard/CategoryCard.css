@@ -48,15 +48,15 @@ ul.icon_hu li {
 }
 
 .hover_box {
-  background: #2768f3bf;
+  /* background: #2768f3bf; */
   display: flex;
   justify-content: center;
   position: absolute;
   top: 0;
-  width: 88%;
+  width: 85%;
   box-sizing: border-box;
   float: left;
-  height: 100%;
+  height: 90%;
   align-items: center;
   opacity: 0;
   transition: ease-in all 0.5s;
@@ -65,4 +65,9 @@ ul.icon_hu li {
 .details-button {
   padding: 20px;
   border-radius: 20px;
+}
+
+.category-delete-button {
+  display: block !important;
+  margin: 20px auto;
 }

@@ -1,6 +1,9 @@
 .footer {
   background: #161616;
-  margin-top: 90px;
+  padding-top: 50px;
+  /* position: absolute; */
+  bottom: 0;
+  width: 100%;
 }
 .news h3 {
   color: #fff;
@@ -108,7 +111,6 @@ ul.social_link li a:hover {
 
 .copyright {
   padding: 23px 0px;
-  margin-top: 31%;
   border-top: #ddd solid 1px;
 }
 .copyright p {

@@ -1,25 +1,12 @@
 import { Link } from "react-router-dom";
 
-const CarouselSlide = ({
-    imageUrl
-}) => {
+const CarouselSlide = ({ imageUrl }) => {
   return (
-    <div className="carousel-inner">
-      <div className="carousel-item active">
-        <div className="container">
-          <div className="carousel-caption">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="text-bg">
-                  <span>The Best</span>
-                  <h1>Musical Instruments</h1>
-                  <p>Best musical instruments</p>
-                  <Link to="products">Go to page</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="carousel-item">
+      <img src="..." alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>...</h5>
+        <p>...</p>
       </div>
     </div>
   );

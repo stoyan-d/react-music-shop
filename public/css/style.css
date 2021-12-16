@@ -1,12 +1,9 @@
-/*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
-/*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700");
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
 @import url(animate.min.css);
 @import url(normalize.css);
 @import url(meanmenu.css);
-@import url(owl.carousel.min.css);
 @import url(slick.css);
 @import url(jquery-ui.css);
 @import url(nice-select.css);
@@ -131,6 +128,7 @@ img {
 .main-layout {
   background-image: url("https://docs.google.com/uc?export=download&id=1s7EQcq1vb2O8LNFHSL1tlA_Fsg-05r6Z");
   background-size: cover;
+  height: 100vh;
 }
 
 .btn-custom {
@@ -455,4 +453,8 @@ a.readmore_bt {
   line-height: 60px;
   padding: 45px 0;
   text-align: center;
+}
+
+body > div.fade.modal.show > div > div > div.modal-header > div {
+  color: #000;
 }
