@@ -22,8 +22,8 @@ const carouselPages = [
       "Here you can add your story so the others can read it or just enjoy other people stories",
     imageUrl:
       "https://docs.google.com/uc?export=download&id=1mnsnjIzTyNHYMASwCF_mM7c5QqHaqrmg",
-    linkTo: "/concerts",
-    buttonLabel: 'Add your story'
+    linkTo: "/stories",
+    buttonLabel: 'Go to stories'
   },
   {
     _id: 3,
@@ -49,7 +49,7 @@ const HomePage = () => {
             alt="carousel-image"
           />
           <Carousel.Caption>
-            <div class="text-bg">
+            <div className="text-bg">
               <span>{slide.title}</span>
               <h1>{slide.subtitle}</h1>
               <p>{slide.description}</p>

@@ -51,23 +51,23 @@ const Header = () => {
                           </li> :
                           ''
                         }
-                        <li active>
-                          <NavLink to="/home">Home</NavLink>
+                        <li>
+                          <NavLink to="/home" >Home</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/concerts">Concerts</NavLink>
+                          <NavLink to="/concerts" >Concerts</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/concerts">Stories</NavLink>
+                          <NavLink to="/stories">Stories</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/categories">Instruments</NavLink>
+                          <NavLink to="/categories" >Instruments</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/about">About</NavLink>
+                          <NavLink to="/about" >About</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/contact-us">Contact us</NavLink>
+                          <NavLink to="/contact-us" >Contact us</NavLink>
                         </li>
                         { !user.email ? userLoginRegister : userLogout }
                       </ul>

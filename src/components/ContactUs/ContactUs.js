@@ -1,16 +1,37 @@
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useNotificationContext, types } from "../../contexts/NotificationContext";
+import * as contactService from "../../services/contactService";
 import "./ContactUs.css";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
   const { user } = useAuthContext();
+  const { addNotification } = useNotificationContext();
+  const email = user && user.accessToken && user._id ? user.email : "";
 
-  const email = user && user.accessToken && user._id ? user.email : '';
-  
+  const sendAMessageHandler = (e) => {
+    e.preventDefault()
+
+    contactService.sendAMessage().then((response) => {
+      if (response) {
+        addNotification(
+          "You sent your messsage successfully. We will return our answer as soon as possible.",
+          types.success,
+          "Message sent"
+        );
+        setTimeout(() => {
+          navigate("/home");
+        }, 2500);
+      }
+    });
+  };
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
-          <form className="contact_bg">
+          <form className="contact_bg" onSubmit={sendAMessageHandler}>
             <div className="row">
               <div className="col-md-12">
                 <div className="titlepage">
@@ -31,7 +52,7 @@ const ContactUs = () => {
                     type="text"
                     name="Your Email"
                     required
-                    value={email}
+                    defaultValue={email}
                   />
                 </div>
                 <div className="col-md-12">
@@ -48,6 +69,7 @@ const ContactUs = () => {
                     placeholder="Message"
                     type="text"
                     name="Message"
+                    required
                   ></textarea>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">

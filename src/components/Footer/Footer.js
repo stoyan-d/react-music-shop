@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="container">
           <div className="copyright">
             <p>
-              Copyright 2019 All Right Reserved By{" "}
-              <a href="https://html.design/">Free html Templates</a>
+              Copyright 2021 All Right Reserved By
+              <a href="#">Music World</a>
             </p>
           </div>
         </div>

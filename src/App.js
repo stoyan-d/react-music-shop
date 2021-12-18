@@ -18,6 +18,8 @@ import AddNewInstrument from "./components/Instruments/AddNewInstrument";
 import Notification from "./components/Common/Notifications/Notification";
 import InstrumentMoreDetails from "./components/Instruments/InstrumentMoreDetails";
 import InstrumentUpdateData from "./components/Instruments/InstrumentUpdateData";
+import CustomerStoriesMain from "./components/CustomerStories/CustomerStoriesMain";
+
 function App() {
   return (
     <AuthProvider>
@@ -31,6 +33,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/concerts" element={<Concerts />} />
+              <Route path="/stories" element={<CustomerStoriesMain />} />
               <Route path="/categories" exact element={<Instruments />} />
               <Route
                 path="/categories/add-category"
