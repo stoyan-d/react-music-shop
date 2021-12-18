@@ -1,6 +1,11 @@
+import { useAuthContext } from "../../contexts/AuthContext";
 import "./ContactUs.css";
 
 const ContactUs = () => {
+  const { user } = useAuthContext();
+
+  const email = user && user.accessToken && user._id ? user.email : '';
+  
   return (
     <div className="container">
       <div className="row">
@@ -25,6 +30,8 @@ const ContactUs = () => {
                     placeholder="Your Email"
                     type="text"
                     name="Your Email"
+                    required
+                    value={email}
                   />
                 </div>
                 <div className="col-md-12">

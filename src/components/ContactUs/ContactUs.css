@@ -74,3 +74,9 @@
 .social-media-box {
   margin-top: 25px;
 }
+
+iframe {
+  display: block;
+  margin: 40px auto;
+  border-radius: 10px;
+}

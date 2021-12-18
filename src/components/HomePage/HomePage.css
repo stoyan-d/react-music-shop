@@ -1,31 +1,27 @@
-.carousel-control-prev {
+.components-wrapper {
+    margin: 20px;
+}
+
+.carousel-control-prev, .carousel-control-next {
   background: #f9f9f9;
   border: 2px solid black !important;
   top: 45% !important;
-  width: 70px;
+  width: 10% !important;
+  margin: 20px;
   height: 70px;
   font-size: 20px;
   border-radius: 40px;
   box-shadow: #000 0px 0px 7px -3px;
 }
 
-.carousel-control-next {
-  background: #f9f9f9;
-  border: 2px solid black !important;
-  top: 45% !important;
-  width: 70px;
-  font-size: 20px;
-  height: 70px;
-  border-radius: 40px;
-  box-shadow: #000 0px 0px 7px -3px;
-}
-
-.carousel-control-prev:hover {
+.carousel-control-prev:hover, .carousel-control-next:hover {
   background-color: lightblue !important;
+  border: 1px solid white !important;
 }
+
 .carousel-caption {
   position: inherit;
-  top: 45%;
+  top: 29%;
 }
 
 .carousel-dark .carousel-indicators button {

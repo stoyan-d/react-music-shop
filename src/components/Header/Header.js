@@ -33,7 +33,7 @@ const Header = () => {
                   <div className="center-desk">
                     <div className="logo">
                       <Link to="/home">
-                        <img src="images/logo.png" alt="logo" />
+                        <img src="https://docs.google.com/uc?export=download&id=1jyh6tY-5I47bBI9aJ7S49u3zSSHtzeNS" alt="logo" />
                       </Link>
                     </div>
                   </div>
@@ -51,17 +51,17 @@ const Header = () => {
                           </li> :
                           ''
                         }
-                        <li>
+                        <li active>
                           <NavLink to="/home">Home</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/concerts">Tickets</NavLink>
+                          <NavLink to="/concerts">Concerts</NavLink>
                         </li>
                         <li>
                           <NavLink to="/concerts">Stories</NavLink>
                         </li>
                         <li>
-                          <NavLink to="/categories">Categories</NavLink>
+                          <NavLink to="/categories">Instruments</NavLink>
                         </li>
                         <li>
                           <NavLink to="/about">About</NavLink>

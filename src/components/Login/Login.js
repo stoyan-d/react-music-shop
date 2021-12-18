@@ -1,7 +1,10 @@
-import { useNavigate } from 'react-router';
-import { useAuthContext } from '../../contexts/AuthContext';
-import { useNotificationContext, types } from '../../contexts/NotificationContext';
-import * as authService from '../../services/authService';
+import { useNavigate } from "react-router";
+import { useAuthContext } from "../../contexts/AuthContext";
+import {
+  useNotificationContext,
+  types,
+} from "../../contexts/NotificationContext";
+import * as authService from "../../services/authService";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,19 +13,26 @@ const Login = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    
+
     const form = new FormData(e.currentTarget);
     const { email, password } = Object.fromEntries(form);
 
-    authService.login(email, password)
+    authService
+      .login(email, password)
       .then((authData) => {
         login(authData);
-        addNotification('You logged in successfully', types.success);
-        navigate('/home');
+        addNotification(
+          "You logged in successfully",
+          types.success,
+          "Login successful"
+        );
+        setTimeout(() => {
+          navigate("/home");
+        }, 1500);
       })
-      .catch(err => {
-        console.log(addNotification)
-        addNotification(err, types.error, 'Login unsuccessful');
+      .catch((err) => {
+        console.log(addNotification);
+        addNotification(err, types.error, "Login unsuccessful");
       });
   };
 
@@ -55,7 +65,9 @@ const Login = () => {
                   />
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <button type="submit" className="send">Login</button>
+                  <button type="submit" className="send">
+                    Login
+                  </button>
                 </div>
               </div>
             </div>

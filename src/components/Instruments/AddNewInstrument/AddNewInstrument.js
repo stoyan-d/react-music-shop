@@ -1,28 +1,48 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { useNotificationContext, types } from "../../../contexts/NotificationContext";
 import * as categoriesService from "../../../services/categoriesService";
 
-import "./AddNewCategory.css";
+import "./AddNewInstrument.css";
 
-const AddNewCategory = () => {
+const AddNewInstrument = () => {
   const navigate = useNavigate();
+  const { addNotification } = useNotificationContext();
   const { user } = useAuthContext();
 
   const addCategoryHandler = (e) => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
-    const { categoryName, categoryType, categoryImageUrl, categoryDescription } = Object.fromEntries(form);
+    const {
+      categoryName,
+      categoryType,
+      brandName,
+      modelName,
+      imageUrl,
+      description,
+    } = Object.fromEntries(form);
 
     const requestData = {
       categoryName,
       categoryType,
-      categoryImageUrl,
-      categoryDescription
-    }
+      brandName,
+      modelName,
+      imageUrl,
+      description,
+    };
 
-    categoriesService.create(requestData, user.accessToken).then((authData) => {
-      navigate("/categories");
+    categoriesService.create(requestData, user.accessToken).then((response) => {
+      if (response._id) {
+        addNotification(
+            "You added the instrument successfully",
+            types.success,
+            "Instrument added successfully"
+          );
+          setTimeout(() => {
+            navigate(`/insruments`);
+          }, 1500);
+    }
     });
   };
 
@@ -34,12 +54,12 @@ const AddNewCategory = () => {
             <div className="row">
               <div className="col-md-12">
                 <div className="titlepage">
-                  <h2>Add Category</h2>
+                  <h2>Add Instrument</h2>
                 </div>
                 <div className="col-md-12">
                   <input
                     className="contactus"
-                    placeholder="Category Name"
+                    placeholder="Instrument Category Name"
                     type="text"
                     name="categoryName"
                   />
@@ -47,7 +67,7 @@ const AddNewCategory = () => {
                 <div className="col-md-12">
                   <input
                     className="contactus"
-                    placeholder="Category Type"
+                    placeholder="Instrument Category Type"
                     type="text"
                     name="categoryType"
                   />
@@ -55,9 +75,25 @@ const AddNewCategory = () => {
                 <div className="col-md-12">
                   <input
                     className="contactus"
+                    placeholder="Instrument Brand Name"
+                    type="text"
+                    name="brandName"
+                  />
+                </div>
+                <div className="col-md-12">
+                  <input
+                    className="contactus"
+                    placeholder="Instrument Model"
+                    type="text"
+                    name="modelName"
+                  />
+                </div>
+                <div className="col-md-12">
+                  <input
+                    className="contactus"
                     placeholder="Image Url"
                     type="text"
-                    name="categoryImageUrl"
+                    name="imageUrl"
                   />
                 </div>
                 <div className="col-md-12">
@@ -65,11 +101,13 @@ const AddNewCategory = () => {
                     className="textarea"
                     placeholder="Description"
                     type="text"
-                    name="categoryDescription"
+                    name="description"
                   ></textarea>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <button type="submit" className="send">Add</button>
+                  <button type="submit" className="send">
+                    Add Instrument
+                  </button>
                 </div>
               </div>
             </div>
@@ -80,4 +118,4 @@ const AddNewCategory = () => {
   );
 };
 
-export default AddNewCategory;
+export default AddNewInstrument;

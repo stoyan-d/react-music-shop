@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useNotificationContext, types } from "../../contexts/NotificationContext";
-import * as authService from '../../services/authService';
+import {
+  useNotificationContext,
+  types,
+} from "../../contexts/NotificationContext";
+import * as authService from "../../services/authService";
 
 const Register = () => {
   const navigate = useNavigate();
   const { addNotification } = useNotificationContext();
-  
+
   const { login } = useAuthContext();
 
   const registerHandler = (e) => {
@@ -15,14 +18,22 @@ const Register = () => {
     const form = new FormData(e.currentTarget);
     const { email, password } = Object.fromEntries(form);
 
-    authService.register(email, password).then((authData) => {
-      login(authData);
-      addNotification('You registered successfully', types.success);
-      navigate("/home");
-    })
-    .catch(err => {
-      addNotification(err, 'Register unsuccessful');
-    });
+    authService
+      .register(email, password)
+      .then((authData) => {
+        login(authData);
+        addNotification(
+          "You registered successfully",
+          types.success,
+          "Registration successful"
+        );
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
+      })
+      .catch((err) => {
+        addNotification(err, "Register unsuccessful");
+      });
   };
 
   return (
@@ -60,7 +71,9 @@ const Register = () => {
                   />
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <button type="submit" className="send">Register</button>
+                  <button type="submit" className="send">
+                    Register
+                  </button>
                 </div>
               </div>
             </div>
