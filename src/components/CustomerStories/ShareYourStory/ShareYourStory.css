@@ -1,0 +1,19 @@
+.write-story-wrapper {
+    max-width: 850px;
+}
+
+.share-button-wrapper {
+    margin-top: 35px;
+}
+
+.customer-story-text {
+    min-height: 500px !important;
+}
+
+.not-logged-share-wrapper {
+    background-color: white;
+    margin: 0 -80px 0 -80px !important;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}

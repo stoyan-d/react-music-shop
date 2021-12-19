@@ -1,0 +1,24 @@
+.story-wrapper-box {
+    border-top: 2px dotted gray;
+}
+
+.story-box {
+  max-width: 95%;
+  text-align: justify;
+}
+
+.story-box p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-container a {
+    margin: 0 10px 10px 0;
+}

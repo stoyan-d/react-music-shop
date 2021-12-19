@@ -13,8 +13,18 @@ const ContactUs = () => {
   const sendAMessageHandler = (e) => {
     e.preventDefault()
 
-    contactService.sendAMessage().then((response) => {
-      if (response) {
+    const form = new FormData(e.currentTarget);
+    const { name, email, phone, message } = Object.fromEntries(form);
+
+    const requestData = {
+      name,
+      email,
+      phone,
+      message
+    };
+
+    contactService.sendAMessage(requestData, user.accessToken).then((response) => {
+      if (response._id) {
         addNotification(
           "You sent your messsage successfully. We will return our answer as soon as possible.",
           types.success,
@@ -42,7 +52,7 @@ const ContactUs = () => {
                     className="contactus"
                     placeholder="Your Name"
                     type="text"
-                    name="Your Name"
+                    name="name"
                   />
                 </div>
                 <div className="col-md-12">
@@ -50,7 +60,7 @@ const ContactUs = () => {
                     className="contactus"
                     placeholder="Your Email"
                     type="text"
-                    name="Your Email"
+                    name="email"
                     required
                     defaultValue={email}
                   />
@@ -60,7 +70,7 @@ const ContactUs = () => {
                     className="contactus"
                     placeholder="Your Phone"
                     type="text"
-                    name="Your Phone"
+                    name="phone"
                   />
                 </div>
                 <div className="col-md-12">
@@ -68,7 +78,7 @@ const ContactUs = () => {
                     className="textarea"
                     placeholder="Message"
                     type="text"
-                    name="Message"
+                    name="message"
                     required
                   ></textarea>
                 </div>

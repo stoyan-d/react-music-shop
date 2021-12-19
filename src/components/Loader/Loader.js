@@ -1,4 +1,8 @@
-const Loader = () => {
+const Loader = ({ show }) => {
+  // if (!show) {
+  //   return;
+  // }
+
   return (
     <div className="loader_bg">
       <div className="loader">

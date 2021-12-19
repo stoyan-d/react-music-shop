@@ -762,3 +762,8 @@ nav.main-menu {
   right: 0;
   padding: 15px 0px;
 }
+
+.main-menu .active {
+  background: #0ed1f0;
+  border-radius: 17px;
+}

@@ -10,7 +10,7 @@ export const sendAMessage = async (userData, token) => {
             'content-type': 'application/json',
             'X-Authorization': token,
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify({...userData})
     });
 
     let result = await response.json();

@@ -1,3 +1,7 @@
+.carousel-inner {
+  border-radius: 10px;
+}
+
 .components-wrapper {
     margin: 20px;
 }
@@ -29,3 +33,11 @@
   border-radius: 15px;
   padding: 8px 22px;
 }
+
+
+.carousel-indicators button {
+  height: 40px !important;
+  border-radius: 26px;
+  background-color: lightblue !important;
+}
+

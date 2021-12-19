@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { useNotificationContext, types } from "../../../contexts/NotificationContext";
+import {
+  useNotificationContext,
+  types,
+} from "../../../contexts/NotificationContext";
 import * as categoriesService from "../../../services/categoriesService";
 
 import "./AddNewInstrument.css";
@@ -35,14 +38,14 @@ const AddNewInstrument = () => {
     categoriesService.create(requestData, user.accessToken).then((response) => {
       if (response._id) {
         addNotification(
-            "You added the instrument successfully",
-            types.success,
-            "Instrument added successfully"
-          );
-          setTimeout(() => {
-            navigate(`/insruments`);
-          }, 1500);
-    }
+          "You added the instrument successfully",
+          types.success,
+          "Instrument added successfully"
+        );
+        setTimeout(() => {
+          navigate(`/insruments`);
+        }, 1500);
+      }
     });
   };
 
