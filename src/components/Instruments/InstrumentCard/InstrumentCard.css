@@ -55,7 +55,7 @@ ul.icon_hu li {
   width: 85%;
   box-sizing: border-box;
   float: left;
-  height: 75%;
+  height: 100%;
   align-items: center;
   opacity: 0;
   transition: ease-in all 0.5s;
@@ -66,9 +66,4 @@ ul.icon_hu li {
   border-radius: 20px;
   background: rgb(239, 239, 239);
   color: #000 !important;
-}
-
-.category-delete-button {
-  display: block !important;
-  margin: 20px auto;
 }

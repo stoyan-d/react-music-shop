@@ -1,39 +1,7 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../../contexts/AuthContext";
-import * as categoriesService from "../../../services/categoriesService";
-import DeleteModal from "../../Common/Modals/DeleteModal";
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./InstrumentCard.css";
 
 const InstrumentCard = ({ instrumentData }) => {
-  const navigate = useNavigate();
-  const { user } = useAuthContext();
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const deleteConfirmationHandler = (e) => {
-    setShowDeleteModal(true);
-  };
-
-  const closeHandler = () => {
-    setShowDeleteModal(false);
-  };
-
-  const deleteHandler = () => {
-    setShowDeleteModal(false);
-
-    categoriesService
-      .destroy(instrumentData._id, user.accessToken)
-      .then(() => {
-        navigate("/instruments");
-      })
-      .finally(() => {
-        //setShowDeleteDialog(false);
-      });
-  };
-
-  const isOwner = user && user.accessToken && user._id === instrumentData._ownerId;
-
   return (
     <>
       <div
@@ -49,29 +17,12 @@ const InstrumentCard = ({ instrumentData }) => {
         </div>
         <div className="hover_box">
           <ul className="icon_hu">
-            <Link to={`/details/${instrumentData._id}`} state={isOwner} className="details-button">See More Details</Link>
+            <Link to={`/details/${instrumentData._id}`} className="details-button">See More Details</Link>
           </ul>
         </div>
-        { isOwner ?  (
-          <Button
-            className="category-delete-button"
-            variant="danger"
-            onClick={deleteConfirmationHandler}
-          >
-            Delete
-          </Button>
-        ) : (
-          ""
-        )}
+        
       </div>
 
-      {showDeleteModal && (
-        <DeleteModal
-          showModal={showDeleteModal}
-          closeHandler={closeHandler}
-          deleteHandler={deleteHandler}
-        />
-      )}
     </>
   );
 };

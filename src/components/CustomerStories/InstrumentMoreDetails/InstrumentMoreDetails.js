@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuthContext } from '../../../contexts/AuthContext';
 import { Button } from "react-bootstrap";
-import * as instrumentsService from "../../../services/instrumentsService";
+import * as categoriesService from "../../../services/instrumentsService";
 import DeleteModal from "../../Common/Modals/DeleteModal";
 import './InstrumentMoreDetails.css';
 
@@ -15,7 +15,7 @@ const InstrumentMoreDetails = () => {
   const isOwner = user && user.accessToken && user._id === instrumentData._ownerId;
 
   useEffect(() => {
-    instrumentsService.getOne(instrumentId).then((instrumentData) => {
+    categoriesService.getOne(instrumentId).then((instrumentData) => {
       console.log(instrumentData);
       setInstrumentData(instrumentData);
     });
@@ -32,7 +32,7 @@ const InstrumentMoreDetails = () => {
   const deleteHandler = () => {
     setShowDeleteModal(false);
 
-    instrumentsService
+    categoriesService
       .destroy(instrumentData._id, user.accessToken)
       .then(() => {
         navigate("/instruments");

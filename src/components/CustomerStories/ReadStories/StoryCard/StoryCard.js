@@ -12,7 +12,7 @@ const StoryCard = ({ storyData }) => {
             dangerouslySetInnerHTML={{ __html: storyData.story }}
           />
           <div className="button-container">
-            <Link to={`/stories/story-details/${storyData._id}`}>Read More</Link>
+            <Link to={`/stories/story-details/${storyData._id}`} state={{storyData}}>Read More</Link>
           </div>
         </div>
       </div>

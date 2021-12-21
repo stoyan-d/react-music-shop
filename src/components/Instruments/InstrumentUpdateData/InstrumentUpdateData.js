@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { useNotificationContext, types } from "../../../contexts/NotificationContext";
-import * as categoriesService from "../../../services/categoriesService";
+import * as categoriesService from "../../../services/instrumentsService";
 
 const InstrumentUpdateData = () => {
   const location = useLocation();

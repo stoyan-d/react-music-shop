@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { useAuthContext } from '../../../contexts/AuthContext';
+import { Link, useParams, useNavigate, useLocation} from "react-router-dom";
+import { useAuthContext } from '../../../../../contexts/AuthContext';
 import { Button } from "react-bootstrap";
-import * as instrumentsService from "../../../services/instrumentsService";
-import DeleteModal from "../../Common/Modals/DeleteModal";
-import './InstrumentMoreDetails.css';
+import * as storiesService from "../../../../../services/storiesService";
+import DeleteModal from "../../../../Common/Modals/DeleteModal";
+import './SeeMoreStoryDetails.css';
 
-const InstrumentMoreDetails = () => {
+const SeeMoreStoryDetails = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const { instrumentId } = useParams();
-  const { user } = useAuthContext();
-  const [instrumentData, setInstrumentData] = useState({});
+  const {storyData} = location.state;
+  const [isOwner, setIsOwner] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const isOwner = user && user.accessToken && user._id === instrumentData._ownerId;
+  const { user } = useAuthContext();
+  const { storyId } = useParams();
 
   useEffect(() => {
-    instrumentsService.getOne(instrumentId).then((instrumentData) => {
-      console.log(instrumentData);
-      setInstrumentData(instrumentData);
-    });
+    setIsOwner(user && user.accessToken && user._id === storyData._ownerId);
   }, []);
-  
+
   const deleteConfirmationHandler = (e) => {
     setShowDeleteModal(true);
   };
@@ -32,10 +30,10 @@ const InstrumentMoreDetails = () => {
   const deleteHandler = () => {
     setShowDeleteModal(false);
 
-    instrumentsService
-      .destroy(instrumentData._id, user.accessToken)
+    storiesService
+      .destroy(storyData._id, user.accessToken)
       .then(() => {
-        navigate("/instruments");
+        navigate("/stories/read-stories");
       })
       .finally(() => {
         //setShowDeleteDialog(false);
@@ -50,7 +48,7 @@ const InstrumentMoreDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="heding">
-                <h2>Instrument Details</h2>
+                <h2>Story Details</h2>
               </div>
             </div>
           </div>
@@ -59,22 +57,19 @@ const InstrumentMoreDetails = () => {
       <div id="upcoming" className="upcoming">
         <div className="container-fluid padding_left3">
           <div className="row display_boxflex">
-            <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12">
-              <div className="box_text">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div className="box_text story-box-text">
                 <div className="titlepage">
-                  <h2>Brand: {instrumentData.brandName}</h2>
-                  <h3>Model: {instrumentData.modelName}</h3>
-                  <h3>Instrument Category: {instrumentData.categoryName}</h3>
-                  <h3>Category Type: {instrumentData.categoryType}</h3>
+                  <h2>Topic: {storyData.topic}</h2>
                 </div>
-                <p>{instrumentData.description}</p>
+                <div className="fr-view" dangerouslySetInnerHTML={{ __html: storyData.story }}></div>
                 <div className="row more-info-button-wrapper" >
                 {isOwner ? (
                   <Link
-                    to={`/update/${instrumentData._id}`}
-                    state={instrumentData}
+                    to={`/stories/update/${storyData._id}`}
+                    state={{storyData}}
                   >
-                    Update Data
+                    Update Story
                   </Link>
                 ) : (
                   ""
@@ -88,7 +83,7 @@ const InstrumentMoreDetails = () => {
                     variant="danger"
                     onClick={deleteConfirmationHandler}
                   >
-                    Delete Data
+                    Delete Story
                   </Button>
                 ) : (
                   ""
@@ -99,7 +94,7 @@ const InstrumentMoreDetails = () => {
             <div className="col-xl-7 col-lg-7 col-md-7 col-sm-12 border_right">
               <div className="upcomimg">
                 <figure>
-                  <img src={instrumentData.imageUrl} alt="Instrument Image" />
+                  {/* <img src={storyData.imageUrl} alt="Instrument Image" /> */}
                 </figure>
               </div>
             </div>
@@ -118,4 +113,4 @@ const InstrumentMoreDetails = () => {
   );
 };
 
-export default InstrumentMoreDetails;
+export default SeeMoreStoryDetails;

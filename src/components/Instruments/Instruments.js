@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import * as categoriesService from "../../services/categoriesService";
+import * as categoriesService from "../../services/instrumentsService";
 import CategoryCard from "./InstrumentCard";
 import "./Instruments.css";
 

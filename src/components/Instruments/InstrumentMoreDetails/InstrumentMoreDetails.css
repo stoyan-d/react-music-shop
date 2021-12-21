@@ -1,0 +1,17 @@
+.more-info-button-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.more-info-button-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.category-delete-button {
+  border-radius: 30px !important;
+  min-width: 171px;
+  padding: 7px !important;
+  margin: 20px 0 20px -10px;
+}

@@ -21,6 +21,8 @@ import InstrumentUpdateData from "./components/Instruments/InstrumentUpdateData"
 import CustomerStoriesMain from "./components/CustomerStories/CustomerStoriesMain";
 import ShareYourStory from "./components/CustomerStories/ShareYourStory";
 import ReadStories from "./components/CustomerStories/ReadStories";
+import SeeMoreStoryDetails from "./components/CustomerStories/ReadStories/StoryCard/SeeMoreStoryDetails";
+import UpdateStory from "./components/CustomerStories/ReadStories/StoryCard/UpdateStory";
 
 function App() {
   return (
@@ -36,11 +38,13 @@ function App() {
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/concerts" element={<Concerts />} />
               <Route path="/stories" element={<CustomerStoriesMain />} />
-              <Route path="/stories/share-your-story" element={<ShareYourStory />} />
               <Route path="/stories/read-stories" element={<ReadStories />} />
-              <Route path="/categories" exact element={<Instruments />} />
+              <Route path="/stories/share-your-story" element={<ShareYourStory />} />
+              <Route path="/stories/update/:storyId" element={<UpdateStory/>} />
+              <Route path="/stories/story-details/:storyId" element={<SeeMoreStoryDetails />} />
+              <Route path="/instruments" exact element={<Instruments />} />
               <Route
-                path="/categories/add-category"
+                path="/instruments/add-category"
                 exact
                 element={<AddNewInstrument />}
               />

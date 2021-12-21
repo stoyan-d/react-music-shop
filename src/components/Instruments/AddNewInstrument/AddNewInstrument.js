@@ -4,7 +4,7 @@ import {
   useNotificationContext,
   types,
 } from "../../../contexts/NotificationContext";
-import * as categoriesService from "../../../services/categoriesService";
+import * as instrumentsService from "../../../services/instrumentsService";
 
 import "./AddNewInstrument.css";
 
@@ -35,7 +35,7 @@ const AddNewInstrument = () => {
       description,
     };
 
-    categoriesService.create(requestData, user.accessToken).then((response) => {
+    instrumentsService.create(requestData, user.accessToken).then((response) => {
       if (response._id) {
         addNotification(
           "You added the instrument successfully",

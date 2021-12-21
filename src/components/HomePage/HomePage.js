@@ -11,7 +11,7 @@ const carouselPages = [
       "If you are looking for a new instrument or want to sell unnecessary one - you are at the right place",
     imageUrl:
       "https://docs.google.com/uc?export=download&id=11oXJsCdso_wD8ly_1IEs0gD3G2ZCdBNG",
-    linkTo: "/categories",
+    linkTo: "/instruments",
     buttonLabel: 'Go to the products'
   },
   {
@@ -25,17 +25,17 @@ const carouselPages = [
     linkTo: "/stories",
     buttonLabel: 'Go to stories'
   },
-  {
-    _id: 3,
-    title: "Buy",
-    subtitle: "Tickets",
-    description:
-      "You can see the concerts available in the next monts add purchase a ticket",
-    imageUrl:
-      "https://docs.google.com/uc?export=download&id=1i24h_Md3XWkwuk_mFn8by2Tmd6rcx0Z-",
-      linkTo: "/concerts",
-      buttonLabel: 'See available concerts'
-  },
+  // {
+  //   _id: 3,
+  //   title: "Buy",
+  //   subtitle: "Tickets",
+  //   description:
+  //     "You can see the concerts available in the next monts add purchase a ticket",
+  //   imageUrl:
+  //     "https://docs.google.com/uc?export=download&id=1i24h_Md3XWkwuk_mFn8by2Tmd6rcx0Z-",
+  //     linkTo: "/concerts",
+  //     buttonLabel: 'See available concerts'
+  // },
 ];
 
 const HomePage = () => {
