@@ -16,7 +16,6 @@ const InstrumentMoreDetails = () => {
 
   useEffect(() => {
     categoriesService.getOne(instrumentId).then((instrumentData) => {
-      console.log(instrumentData);
       setInstrumentData(instrumentData);
     });
   }, []);

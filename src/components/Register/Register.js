@@ -67,7 +67,7 @@ const Register = () => {
                     className="contactus"
                     placeholder="Please Repeat Your Password"
                     type="password"
-                    name="password"
+                    name="rePassword"
                   />
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">

@@ -2,3 +2,19 @@
   max-width: none;
   width: 95%;
 }
+
+.like-button {
+  border-radius: 30px !important;
+  color: white !important;
+  margin-right: 20px;
+}
+
+.like-wrapper {
+  text-align: right;
+  padding-right: 50px !important;
+}
+
+.likes-box {
+  font-size: 22px;
+  font-style: italic;
+}

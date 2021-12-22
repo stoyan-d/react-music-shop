@@ -13,15 +13,13 @@ import "./UpdateStory.css";
 const UpdateStory = () => {
   const navigate = useNavigate();
   const location = useLocation()
-  const [storyData, setStoryData] = useState({});
+  const {storyData} = location.state;
   const { user } = useAuthContext();
   const { storyId } = useParams();
   const userLoggedIn = user && user.accessToken && user._id;
   const { addNotification } = useNotificationContext();
-  console.log('location', location)
+
   useEffect(() => {
-    setStoryData(location.state);
-    console.log('str', storyData)
     new FroalaEditor("#write-your-story");
   }, []);
 
@@ -83,7 +81,7 @@ const UpdateStory = () => {
             ></textarea>
           </div>
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 share-button-wrapper">
-            <button className="send share-button">Share</button>
+            <button className="send share-button">Update</button>
           </div>
         </div>
       </div>

@@ -1,0 +1,10 @@
+.comment-box {
+    border-top: 2px dotted gray;
+    padding: 20px;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+.comment-text {
+    margin: 0;
+}

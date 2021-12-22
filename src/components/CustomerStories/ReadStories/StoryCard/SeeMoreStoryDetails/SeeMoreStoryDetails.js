@@ -1,21 +1,39 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate, useLocation} from "react-router-dom";
-import { useAuthContext } from '../../../../../contexts/AuthContext';
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import {
+  useNotificationContext,
+  types,
+} from "../../../../../contexts/NotificationContext";
+import { useAuthContext } from "../../../../../contexts/AuthContext";
 import { Button } from "react-bootstrap";
 import * as storiesService from "../../../../../services/storiesService";
+import * as likesService from "../../../../../services/likeService";
+import * as commentsService from "../../../../../services/commentsService";
 import DeleteModal from "../../../../Common/Modals/DeleteModal";
-import './SeeMoreStoryDetails.css';
+import Comment from "./Comment";
+import "./SeeMoreStoryDetails.css";
 
 const SeeMoreStoryDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {storyData} = location.state;
+  const { addNotification } = useNotificationContext();
+  const { storyData } = location.state;
   const [isOwner, setIsOwner] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { user } = useAuthContext();
   const { storyId } = useParams();
 
   useEffect(() => {
+    likesService.getStoriesLikes(storyId).then((likes) => {
+      setLikes(likes);
+    });
+
+    commentsService.getComments(storyId).then((comments) => {
+      setComments(comments);
+    });
+    
     setIsOwner(user && user.accessToken && user._id === storyData._ownerId);
   }, []);
 
@@ -40,6 +58,48 @@ const SeeMoreStoryDetails = () => {
       });
   };
 
+  const addCommentHandler = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const { comment } = Object.fromEntries(form);
+    console.log('cmd', comment)
+
+    const commentData = {
+      username: user.email,
+      comment
+    };
+
+   
+    commentsService.addComment(user._id, storyId, commentData).then((response) => {
+      if (response._id) {
+        addNotification("Successfuly commented the story", types.success, "Comment Added");
+        e.currentTarget = "";
+      }
+    }).finally(() => {
+      commentsService.getComments(storyId).then((comments) => {
+        setComments(comments);
+      });
+    });
+  };
+
+  const addLikeHandler = (e) => {
+    e.preventDefault();
+
+    likesService.addLike(user._id, storyId).then((likes) => {
+      setLikes(likes);
+
+      addNotification(
+        "Successfuly liked the story",
+        types.info,
+        "Liked successfully"
+      );
+    }).finally(() => {
+      likesService.getStoriesLikes(storyId).then((likes) => {
+        setLikes(likes);
+      });
+    })
+  };
 
   return (
     <>
@@ -62,20 +122,21 @@ const SeeMoreStoryDetails = () => {
                 <div className="titlepage">
                   <h2>Topic: {storyData.topic}</h2>
                 </div>
-                <div className="fr-view" dangerouslySetInnerHTML={{ __html: storyData.story }}></div>
-                <div className="row more-info-button-wrapper" >
-                {isOwner ? (
-                  <Link
-                    to={`/stories/update/${storyData._id}`}
-                    state={{storyData}}
-                  >
-                    Update Story
-                  </Link>
-                ) : (
-                  ""
-                )}
-
-                
+                <div
+                  className="fr-view"
+                  dangerouslySetInnerHTML={{ __html: storyData.story }}
+                ></div>
+                <div className="row more-info-button-wrapper">
+                  {isOwner ? (
+                    <Link
+                      to={`/stories/update/${storyData._id}`}
+                      state={{ storyData }}
+                    >
+                      Update Story
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {isOwner ? (
                   <Button
@@ -91,12 +152,38 @@ const SeeMoreStoryDetails = () => {
               </div>
             </div>
 
-            <div className="col-xl-7 col-lg-7 col-md-7 col-sm-12 border_right">
-              <div className="upcomimg">
-                <figure>
-                  {/* <img src={storyData.imageUrl} alt="Instrument Image" /> */}
-                </figure>
-              </div>
+            { comments.map(comment => <Comment key={comment._id} commentData={comment.commentData}/>)  }
+            
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right like-wrapper">
+              <Button
+                className="like-button"
+                variant="info"
+                onClick={addLikeHandler}
+              >
+                Like Story
+              </Button>
+              <span className="likes-box">Likes: {likes.length}</span>
+            </div>
+
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right">
+              <form className="contact_bg" onSubmit={addCommentHandler}>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="col-md-12">
+                      <textarea
+                        className="textarea"
+                        placeholder="Comment here..."
+                        type="text"
+                        name="comment"
+                        required
+                      ></textarea>
+                    </div>
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                      <button className="send">Add comment</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
