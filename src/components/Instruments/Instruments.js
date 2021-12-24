@@ -34,7 +34,7 @@ const Instruments = () => {
         <h2 className="categories-title">See our current instruments</h2>
         {addingAllowed ? addCategory : ""}
       </div>
-      <div id="gallery" className="Gallery">
+      <div className="Gallery">
         <div className="container">
           <div className="row display_boxflex">
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">

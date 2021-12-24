@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { useCartContext } from "../../../contexts/CartContext";
 import { Button } from "react-bootstrap";
 import * as instrumentsService from "../../../services/instrumentsService";
 import DeleteModal from "../../Common/Modals/DeleteModal/DeleteModal";
+import ConfirmModal from "../../Common/Modals/ConfirmModal/ConfirmModal";
 import "./InstrumentMoreDetails.css";
 
 const InstrumentMoreDetails = () => {
   const navigate = useNavigate();
   const { instrumentId } = useParams();
   const { user } = useAuthContext();
+  const { cart, addToCart } = useCartContext();
   const [instrumentData, setInstrumentData] = useState({});
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const isOwner =
     user && user.accessToken && user._id === instrumentData._ownerId;
 
   useEffect(() => {
     instrumentsService.getOne(instrumentId).then((instrumentData) => {
-      console.log(instrumentData);
       setInstrumentData(instrumentData);
     });
   }, []);
@@ -41,6 +44,16 @@ const InstrumentMoreDetails = () => {
       .finally(() => {
         //setShowDeleteDialog(false);
       });
+  };
+
+  const closeConfirmHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  const continueConfirmationHandler = (e) => {
+    setShowConfirmModal(false);
+    console.log(cart)
+    addToCart(instrumentData);
   };
 
   return (
@@ -93,7 +106,12 @@ const InstrumentMoreDetails = () => {
                 )}
 
                 {!isOwner ? (
-                  <Button className="success buy-btn">Buy Instrument</Button>
+                  <Button
+                    className="success buy-btn"
+                    onClick={() => setShowConfirmModal(true)}
+                  >
+                    Buy Instrument
+                  </Button>
                 ) : (
                   ""
                 )}
@@ -116,6 +134,14 @@ const InstrumentMoreDetails = () => {
           showModal={showDeleteModal}
           closeHandler={closeHandler}
           deleteHandler={deleteHandler}
+        />
+      )}
+
+      {showConfirmModal && (
+        <ConfirmModal
+          showModal={showConfirmModal}
+          closeConfirmHandler={closeConfirmHandler}
+          continueConfirmationHandler={continueConfirmationHandler}
         />
       )}
     </>
