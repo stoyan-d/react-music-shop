@@ -21,15 +21,27 @@ const Register = () => {
     authService
       .register(email, password)
       .then((authData) => {
-        login(authData);
-        addNotification(
-          "You registered successfully",
-          types.success,
-          "Registration successful"
-        );
-        setTimeout(() => {
-          navigate("/home");
-        }, 2000);
+        if (authData && authData._id && authData.accessToken) {
+          console.log(authData.email, authData.password);
+          authService
+          
+            .login(authData.email, authData.password)
+            .then((authLoginData) => {
+              login(authLoginData);
+
+              setTimeout(() => {
+                navigate("/home");
+              }, 1500);
+            });
+
+          addNotification(
+            "You registered successfully",
+            types.success,
+            "Registration successful"
+          );
+        } else {
+          addNotification(authData.message, types.info, "Information");
+        }
       })
       .catch((err) => {
         addNotification(err, "Register unsuccessful");

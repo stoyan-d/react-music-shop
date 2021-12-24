@@ -27,7 +27,7 @@ const ReadStories = () => {
       </div>
       <div id="upcoming" className="upcoming">
         <div className="container-fluid padding_left3">
-          { stories.length ? stories.map(story => <StoryCard key={story._id} storyData={story}/>) : '' }
+          { stories.length ? stories.map(story => <StoryCard key={story._id} storyData={story}/>) : <h3 className="text-center no-stories">No stories added up to this moment</h3> }
         </div>
       </div>
     </>

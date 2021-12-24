@@ -774,7 +774,7 @@ nav.main-menu {
   padding-right: 10px;
 }
 
-.my-profile-picture {
+.my-profile-picture, .shopping-card {
   max-width: 30px;
   border-radius: 15px;
 }

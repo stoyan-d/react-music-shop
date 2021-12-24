@@ -22,6 +22,7 @@ const InstrumentUpdateData = () => {
       modelName,
       imageUrl,
       description,
+      price
     } = Object.fromEntries(form);
 
     const requestData = {
@@ -31,6 +32,7 @@ const InstrumentUpdateData = () => {
       modelName,
       imageUrl,
       description,
+      price
     };
 
     categoriesService.update(requestData, instrumentId, user.accessToken).then((response) => {
@@ -110,6 +112,15 @@ const InstrumentUpdateData = () => {
                     name="description"
                     defaultValue={fillData.description}
                   ></textarea>
+                </div>
+                <div className="col-md-12">
+                  <input
+                    className="contactus"
+                    placeholder="Instrument Price"
+                    type="number"
+                    name="price"
+                    defaultValue={fillData.price}
+                  />
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <button type="submit" className="send">

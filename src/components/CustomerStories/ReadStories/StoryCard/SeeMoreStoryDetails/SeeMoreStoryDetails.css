@@ -18,3 +18,7 @@
   font-size: 22px;
   font-style: italic;
 }
+
+.add-comment-btn {
+  border: 1px solid;
+}

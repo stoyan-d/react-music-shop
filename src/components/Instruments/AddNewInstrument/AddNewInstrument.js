@@ -24,6 +24,7 @@ const AddNewInstrument = () => {
       modelName,
       imageUrl,
       description,
+      price
     } = Object.fromEntries(form);
 
     const requestData = {
@@ -33,6 +34,7 @@ const AddNewInstrument = () => {
       modelName,
       imageUrl,
       description,
+      price,
     };
 
     instrumentsService.create(requestData, user.accessToken).then((response) => {
@@ -43,7 +45,7 @@ const AddNewInstrument = () => {
           "Instrument added successfully"
         );
         setTimeout(() => {
-          navigate(`/insruments`);
+          navigate(`/instruments`);
         }, 1500);
       }
     });
@@ -106,6 +108,15 @@ const AddNewInstrument = () => {
                     type="text"
                     name="description"
                   ></textarea>
+                </div>
+                <div className="col-md-12">
+                  <input
+                    className="contactus"
+                    placeholder="Instrument Price"
+                    type="number"
+                    name="price"
+                    required
+                  />
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <button type="submit" className="send">

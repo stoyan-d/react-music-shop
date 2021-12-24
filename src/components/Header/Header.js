@@ -31,6 +31,15 @@ const Header = () => {
           />
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/shopping-cart">
+          <img
+            className="shopping-card"
+            src="https://docs.google.com/uc?export=download&id=1YrMZlHC2R31HMnM6uAZ8McLpI_XntRZM"
+            alt="Shopping Card"
+          />
+        </NavLink>
+      </li>
     </>
   );
 

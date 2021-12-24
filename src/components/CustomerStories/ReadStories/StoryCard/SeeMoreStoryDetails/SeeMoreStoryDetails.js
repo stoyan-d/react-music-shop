@@ -21,6 +21,7 @@ const SeeMoreStoryDetails = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
+  const [likeDisabled, setLikeDisabled] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { user } = useAuthContext();
   const { storyId } = useParams();
@@ -33,7 +34,7 @@ const SeeMoreStoryDetails = () => {
     commentsService.getComments(storyId).then((comments) => {
       setComments(comments);
     });
-    
+
     setIsOwner(user && user.accessToken && user._id === storyData._ownerId);
   }, []);
 
@@ -63,42 +64,55 @@ const SeeMoreStoryDetails = () => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const { comment } = Object.fromEntries(form);
-    console.log('cmd', comment)
+    console.log("cmd", comment);
 
     const commentData = {
       username: user.email,
-      comment
+      comment,
     };
 
-   
-    commentsService.addComment(user._id, storyId, commentData).then((response) => {
-      if (response._id) {
-        addNotification("Successfuly commented the story", types.success, "Comment Added");
-        e.currentTarget = "";
-      }
-    }).finally(() => {
-      commentsService.getComments(storyId).then((comments) => {
-        setComments(comments);
+    commentsService
+      .addComment(user._id, storyId, commentData)
+      .then((response) => {
+        addNotification(
+          "Successfuly commented the story",
+          types.success,
+          "Comment Added"
+        );
+      })
+      .finally(() => {
+        commentsService.getComments(storyId).then((comments) => {
+          setComments(comments);
+        });
       });
-    });
+
+    e.currentTarget = "";
   };
 
   const addLikeHandler = (e) => {
+    if (likes.includes(user._id)) {
+      setLikeDisabled(true);
+      return;
+    }
+
     e.preventDefault();
 
-    likesService.addLike(user._id, storyId).then((likes) => {
-      setLikes(likes);
-
-      addNotification(
-        "Successfuly liked the story",
-        types.info,
-        "Liked successfully"
-      );
-    }).finally(() => {
-      likesService.getStoriesLikes(storyId).then((likes) => {
+    likesService
+      .addLike(user._id, storyId)
+      .then((likes) => {
         setLikes(likes);
+
+        addNotification(
+          "Successfuly liked the story",
+          types.info,
+          "Liked successfully"
+        );
+      })
+      .finally(() => {
+        likesService.getStoriesLikes(storyId).then((likes) => {
+          setLikes(likes);
+        });
       });
-    })
   };
 
   return (
@@ -152,12 +166,15 @@ const SeeMoreStoryDetails = () => {
               </div>
             </div>
 
-            { comments.map(comment => <Comment key={comment._id} commentData={comment.commentData}/>)  }
-            
+            {comments.map((comment) => (
+              <Comment key={comment._id} commentData={comment.commentData} />
+            ))}
+
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right like-wrapper">
               <Button
                 className="like-button"
                 variant="info"
+                disabled={likeDisabled}
                 onClick={addLikeHandler}
               >
                 Like Story
@@ -179,7 +196,9 @@ const SeeMoreStoryDetails = () => {
                       ></textarea>
                     </div>
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                      <button className="send">Add comment</button>
+                      <button className="add-comment-btn send">
+                        Add comment
+                      </button>
                     </div>
                   </div>
                 </div>

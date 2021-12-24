@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useAuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from "../../../contexts/AuthContext";
 import { Button } from "react-bootstrap";
 import * as instrumentsService from "../../../services/instrumentsService";
-import DeleteModal from "../../Common/Modals/DeleteModal";
-import './InstrumentMoreDetails.css';
+import DeleteModal from "../../Common/Modals/DeleteModal/DeleteModal";
+import "./InstrumentMoreDetails.css";
 
 const InstrumentMoreDetails = () => {
   const navigate = useNavigate();
@@ -12,7 +12,8 @@ const InstrumentMoreDetails = () => {
   const { user } = useAuthContext();
   const [instrumentData, setInstrumentData] = useState({});
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const isOwner = user && user.accessToken && user._id === instrumentData._ownerId;
+  const isOwner =
+    user && user.accessToken && user._id === instrumentData._ownerId;
 
   useEffect(() => {
     instrumentsService.getOne(instrumentId).then((instrumentData) => {
@@ -20,7 +21,7 @@ const InstrumentMoreDetails = () => {
       setInstrumentData(instrumentData);
     });
   }, []);
-  
+
   const deleteConfirmationHandler = (e) => {
     setShowDeleteModal(true);
   };
@@ -41,7 +42,6 @@ const InstrumentMoreDetails = () => {
         //setShowDeleteDialog(false);
       });
   };
-
 
   return (
     <>
@@ -68,19 +68,17 @@ const InstrumentMoreDetails = () => {
                   <h3>Category Type: {instrumentData.categoryType}</h3>
                 </div>
                 <p>{instrumentData.description}</p>
-                <div className="row more-info-button-wrapper" >
-                {isOwner ? (
-                  <Link
-                    to={`/update/${instrumentData._id}`}
-                    state={instrumentData}
-                  >
-                    Update Data
-                  </Link>
-                ) : (
-                  ""
-                )}
-
-                
+                <div className="row more-info-button-wrapper">
+                  {isOwner ? (
+                    <Link
+                      to={`/update/${instrumentData._id}`}
+                      state={instrumentData}
+                    >
+                      Update Data
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {isOwner ? (
                   <Button
@@ -90,6 +88,12 @@ const InstrumentMoreDetails = () => {
                   >
                     Delete Data
                   </Button>
+                ) : (
+                  ""
+                )}
+
+                {!isOwner ? (
+                  <Button className="success buy-btn">Buy Instrument</Button>
                 ) : (
                   ""
                 )}
