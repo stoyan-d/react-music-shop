@@ -26,6 +26,7 @@ import ReadStories from "./components/CustomerStories/ReadStories";
 import SeeMoreStoryDetails from "./components/CustomerStories/ReadStories/StoryCard/SeeMoreStoryDetails";
 import UpdateStory from "./components/CustomerStories/ReadStories/StoryCard/UpdateStory";
 import ShoppingCart from "./components/ShoppingCart";
+import MyProfile from "./components/MyProfile";
 
 function App() {
   return (
@@ -42,7 +43,8 @@ function App() {
                 <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="/concerts" element={<Concerts />} />
                 <Route path="/stories" element={<CustomerStoriesMain />} />
-                <Route path="shopping-cart" element={<ShoppingCart />}/>
+                <Route path="/my-profile" element={<MyProfile />}/>
+                <Route path="/shopping-cart" element={<ShoppingCart />}/>
                 <Route path="/stories/read-stories" element={<ReadStories />} />
                 <Route
                   path="/stories/share-your-story"

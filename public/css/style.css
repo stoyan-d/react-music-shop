@@ -459,3 +459,7 @@ body > div.fade.modal.show > div > div > div.modal-header > div {
   color: #000;
 }
 
+textarea {
+  min-height: 150px;
+  resize: none !important;
+}
