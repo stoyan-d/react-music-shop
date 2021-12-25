@@ -10,6 +10,7 @@ import * as purchasesService from "../../../services/purchasesService";
 const Checkout = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
+  const { cart, clearCart } = useCartContext();
   const { addNotification } = useNotificationContext();
 
   const checkoutHandler = (e) => {
@@ -40,17 +41,19 @@ const Checkout = () => {
       city,
       country,
       postCode,
+      purchases: cart,
     };
 
     purchasesService
       .makeAPurchase(requestData, user.accessToken)
       .then((response) => {
         if (response._id) {
-            console.log(response)
-        //   addNotification("", types.success, "Purchase made successfully");
-        //   setTimeout(() => {
-        //     navigate("/home");
-        //   }, 2500);
+          addNotification("Purhase made successfully! Your products are going to be delivered as soon as possible!", types.success, "Success");
+          setTimeout(() => {
+            navigate("/my-profile");
+            // clearCart();
+            // TODO: destroy purchased instruments after successfully made purchase of them
+          }, 2500);
         }
       });
   };

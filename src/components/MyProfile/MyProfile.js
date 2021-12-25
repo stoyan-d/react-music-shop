@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
 import * as purchasesService from "../../services/purchasesService";
+import PurchaseCard from "./PurchaseCard";
 
 const MyProfile = () => {
   const { user } = useAuthContext();
+  const [userPurchases, setUserPurchases] = useState([]);
 
   useEffect(() => {
     purchasesService.getPurchases(user._id).then((purchases) => {
-        console.log('purchases', purchases)
-      });
+      setUserPurchases(purchases);
+    });
   }, []);
 
   return (
@@ -24,7 +26,20 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      <div className="upcoming"></div>
+      <div className="upcoming profile-purchases">
+        {userPurchases.length && <h4 className="text-center">Your Purchases:</h4>}
+        {userPurchases.length ? (
+          userPurchases.map((puchaseItem) => (
+            <PurchaseCard key={puchaseItem._id} purchaseData={puchaseItem} />
+          ))
+        ) : (
+          <>
+            <h4 className="no-items-added-text text-center">
+              No purchases made up to this moment
+            </h4>
+          </>
+        )}
+      </div>
     </>
   );
 };
