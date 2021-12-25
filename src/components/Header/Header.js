@@ -1,10 +1,11 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useCartContext } from "../../contexts/CartContext";
 import "./Header.css";
 
 const Header = () => {
   const { user } = useAuthContext();
+  const { cart } = useCartContext();
 
   const userNotLoggedIn = (
     <>
@@ -33,11 +34,14 @@ const Header = () => {
       </li>
       <li>
         <NavLink to="/shopping-cart">
-          <img
-            className="shopping-card"
-            src="https://docs.google.com/uc?export=download&id=1YrMZlHC2R31HMnM6uAZ8McLpI_XntRZM"
-            alt="Shopping Card"
-          />
+          <span className="shopping-cart-link-img-wrapper">
+            <img
+              className="shopping-card"
+              src="https://docs.google.com/uc?export=download&id=1YrMZlHC2R31HMnM6uAZ8McLpI_XntRZM"
+              alt="Shopping Card"
+            />
+            {cart.length && <span className="red-dot-cart-items">{cart.length}</span>}
+          </span>
         </NavLink>
       </li>
     </>

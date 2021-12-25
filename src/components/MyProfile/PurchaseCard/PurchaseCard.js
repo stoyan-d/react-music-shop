@@ -12,6 +12,11 @@ const PurchaseCard = ({ purchaseData }) => {
               Deliver to: {purchaseData.name} {purchaseData.family}
             </h5>
           </div>
+          <div className="deliver-to-box">
+            <h5>
+              Deliver with: {purchaseData.courier} courier
+            </h5>
+          </div>
           <div className="email-box">
             <h5>Email: {purchaseData.email}</h5>
           </div>

@@ -6,6 +6,8 @@ import {
 } from "../../../contexts/NotificationContext";
 import { useCartContext } from "../../../contexts/CartContext";
 import * as purchasesService from "../../../services/purchasesService";
+import * as instrumentsService from "../../../services/instrumentsService";
+import "./Checkout.css";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ const Checkout = () => {
       city,
       country,
       postCode,
-      purchases: cart,
+      purchases: JSON.parse(JSON.stringify(cart)),
     };
 
     purchasesService
@@ -51,11 +53,22 @@ const Checkout = () => {
           addNotification("Purhase made successfully! Your products are going to be delivered as soon as possible!", types.success, "Success");
           setTimeout(() => {
             navigate("/my-profile");
-            // clearCart();
-            // TODO: destroy purchased instruments after successfully made purchase of them
+
+            // requestData.purchases.forEach(instrumentPurchased => {
+            //   deletePurchasedInstrument(instrumentPurchased);
+            // });
+            
+            clearCart();
           }, 2500);
         }
       });
+
+      // const deletePurchasedInstrument = (instrumentData) => {
+      //   instrumentsService
+      //     .destroy(instrumentData._id, user.accessToken)
+      //     .then(() => {
+      //     });
+      // };
   };
 
   return (

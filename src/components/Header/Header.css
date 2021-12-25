@@ -778,3 +778,19 @@ nav.main-menu {
   max-width: 30px;
   border-radius: 15px;
 }
+
+.shopping-cart-link-img-wrapper {
+  position: relative;
+}
+
+.red-dot-cart-items {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-color: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+}
+

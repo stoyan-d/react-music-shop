@@ -1,0 +1,12 @@
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.confirm-checkout-button {
+    margin-top: 35px;
+    border: 1px solid black;
+}
+
+.confirm-checkout-button:hover {
+    border: 1px solid white;
+}
