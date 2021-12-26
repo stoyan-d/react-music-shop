@@ -16,15 +16,23 @@ const Register = () => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
-    const { email, password } = Object.fromEntries(form);
+    const { email, password, rePassword} = Object.fromEntries(form);
+
+    if (password !== rePassword) {
+      addNotification(
+        "Password and repeat password should be the same!",
+        types.danger,
+        "Passwords do not match"
+      );
+
+      return;
+    };
 
     authService
       .register(email, password)
       .then((authData) => {
         if (authData && authData._id && authData.accessToken) {
-          console.log(authData.email, authData.password);
           authService
-          
             .login(authData.email, authData.password)
             .then((authLoginData) => {
               login(authLoginData);
