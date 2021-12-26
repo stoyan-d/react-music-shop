@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -7,8 +8,8 @@ const Footer = () => {
         <div className="container">
           <div className="copyright">
             <p>
-              Copyright 2021 All Right Reserved By
-              <a href="#">Music World</a>
+              Copyright 2021 All Right Reserved By 
+              <Link to="/home"> Music World</Link>
             </p>
           </div>
         </div>

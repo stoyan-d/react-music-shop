@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
+import BarsLoader from "../Common/BarsLoader/BarsLoader";
 import "./HomePage.css";
 
-const carouselPages = [
+const carouselPagesData = [
   {
     _id: 1,
     title: "Variaty",
@@ -24,22 +26,26 @@ const carouselPages = [
       "https://docs.google.com/uc?export=download&id=1mnsnjIzTyNHYMASwCF_mM7c5QqHaqrmg",
     linkTo: "/stories",
     buttonLabel: 'Go to stories'
-  },
-  // {
-  //   _id: 3,
-  //   title: "Buy",
-  //   subtitle: "Tickets",
-  //   description:
-  //     "You can see the concerts available in the next monts add purchase a ticket",
-  //   imageUrl:
-  //     "https://docs.google.com/uc?export=download&id=1i24h_Md3XWkwuk_mFn8by2Tmd6rcx0Z-",
-  //     linkTo: "/concerts",
-  //     buttonLabel: 'See available concerts'
-  // },
+  }
 ];
 
 const HomePage = () => {
-  return (
+  const [carouselPages, setCarouselPages] = useState([]);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    setCarouselPages(carouselPagesData);
+    
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 2000);
+  }, [])
+
+  const showLoaderItem = (
+    <BarsLoader/>
+  );
+
+  const showCarouselItem = (
     <Carousel>
       {carouselPages.map((slide) => (
         <Carousel.Item key={slide._id}>
@@ -59,6 +65,13 @@ const HomePage = () => {
         </Carousel.Item>
       ))}
     </Carousel>
+  );
+
+  return (
+    <>
+    {showLoader ? showLoaderItem : showCarouselItem}
+    </>
+    
   );
 };
 

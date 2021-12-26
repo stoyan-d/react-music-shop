@@ -40,7 +40,7 @@ const Header = () => {
               src="https://docs.google.com/uc?export=download&id=1YrMZlHC2R31HMnM6uAZ8McLpI_XntRZM"
               alt="Shopping Card"
             />
-            {cart.length && <span className="red-dot-cart-items">{cart.length}</span>}
+            <span className="red-dot-cart-items">{cart.length}</span>
           </span>
         </NavLink>
       </li>

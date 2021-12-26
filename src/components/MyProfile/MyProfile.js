@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext";
 import * as purchasesService from "../../services/purchasesService";
 import PurchaseCard from "./PurchaseCard";
+import "./MyProfile.css";
 
 const MyProfile = () => {
   const { user } = useAuthContext();
