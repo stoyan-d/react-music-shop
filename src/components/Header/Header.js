@@ -72,7 +72,7 @@ const Header = () => {
                   <ul className="menu-area-main">
                     {user.email ? (
                       <li className="no-blue user-logged-in">
-                        Welcome, {user.email}
+                        Welcome,<br/>{user.email}
                       </li>
                     ) : (
                       ""

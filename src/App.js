@@ -13,7 +13,6 @@ import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Instruments from "./components/Instruments/Instruments";
 import Register from "./components/Register/Register";
-import Concerts from "./components/Concerts";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
 import AddNewInstrument from "./components/Instruments/AddNewInstrument";
@@ -44,24 +43,28 @@ function App() {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact-us" element={<ContactUs />} />
-                <Route path="/concerts" element={<Concerts />} />
                 <Route path="/stories" element={<CustomerStoriesMain />} />
-                <Route path="/my-profile" element={<MyProfile />} />
-                <Route path="/shopping-cart" element={<ShoppingCart />} />
                 <Route path="/stories/read-stories" element={<ReadStories />} />
-                <Route
-                  path="/stories/share-your-story"
-                  element={<ShareYourStory />}
-                />
-                <Route
-                  path="/stories/update/:storyId"
-                  element={<UpdateStory />}
-                />
                 <Route
                   path="/stories/story-details/:storyId"
                   element={<SeeMoreStoryDetails />}
                 />
+
+                <Route element={<GuardedRoute />}>
+                  <Route path="/my-profile" element={<MyProfile />} />
+                  <Route path="/shopping-cart" element={<ShoppingCart />} />
+                  <Route
+                    path="/stories/update/:storyId"
+                    element={<UpdateStory />}
+                  />
+                </Route>
+
+                <Route
+                  path="/stories/share-your-story"
+                  element={<ShareYourStory />}
+                />
                 <Route path="/instruments" exact element={<Instruments />} />
+
                 <Route element={<GuardedRoute />}>
                   <Route
                     path="/instruments/add-instrument"

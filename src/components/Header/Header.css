@@ -772,6 +772,7 @@ nav.main-menu {
   color: white;
   font-style: italic;
   padding-right: 10px;
+  text-align: center !important;
 }
 
 .my-profile-picture, .shopping-card {

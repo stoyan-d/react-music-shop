@@ -23,20 +23,27 @@ const SeeMoreStoryDetails = () => {
   const [comments, setComments] = useState([]);
   const [likeDisabled, setLikeDisabled] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const { user } = useAuthContext();
+  const { user, isAuthenticated } = useAuthContext();
   const { storyId } = useParams();
 
   useEffect(() => {
-    likesService.getStoriesLikes(storyId).then((likes) => {
-      setLikes(likes);
-    });
-
-    commentsService.getComments(storyId).then((comments) => {
-      setComments(comments);
-    });
+    getStoryLikes();
+    getStoryComments();
 
     setIsOwner(user && user.accessToken && user._id === storyData._ownerId);
   }, []);
+
+  const getStoryLikes = () => {
+    likesService.getStoriesLikes(storyId).then((likes) => {
+      setLikes(likes);
+    });
+  };
+
+  const getStoryComments = () => {
+    commentsService.getComments(storyId).then((comments) => {
+      setComments(comments);
+    });
+  };
 
   const deleteConfirmationHandler = (e) => {
     setShowDeleteModal(true);
@@ -64,7 +71,6 @@ const SeeMoreStoryDetails = () => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const { comment } = Object.fromEntries(form);
-    console.log("cmd", comment);
 
     const commentData = {
       username: user.email,
@@ -74,19 +80,17 @@ const SeeMoreStoryDetails = () => {
     commentsService
       .addComment(user._id, storyId, commentData)
       .then((response) => {
-        addNotification(
-          "Successfuly commented the story",
-          types.success,
-          "Comment Added"
-        );
+        if (response.length) {
+          addNotification(
+            "Successfuly commented the story",
+            types.success,
+            "Comment Added"
+          );
+        }
       })
       .finally(() => {
-        commentsService.getComments(storyId).then((comments) => {
-          setComments(comments);
-        });
+        getStoryComments();
       });
-
-    e.currentTarget = "";
   };
 
   const addLikeHandler = (e) => {
@@ -100,18 +104,18 @@ const SeeMoreStoryDetails = () => {
     likesService
       .addLike(user._id, storyId)
       .then((likes) => {
-        setLikes(likes);
+        if (likes._id) {
+          setLikes(likes);
 
-        addNotification(
-          "Successfuly liked the story",
-          types.info,
-          "Liked successfully"
-        );
+          addNotification(
+            "Successfuly liked the story",
+            types.info,
+            "Liked successfully"
+          );
+        }
       })
       .finally(() => {
-        likesService.getStoriesLikes(storyId).then((likes) => {
-          setLikes(likes);
-        });
+        getStoryLikes();
       });
   };
 
@@ -125,6 +129,13 @@ const SeeMoreStoryDetails = () => {
                 <h2>Story Details</h2>
               </div>
             </div>
+            {!isAuthenticated && (
+              <div className="col-md-12">
+                <div className="log-in-warning-box">
+                  <Link to="/login">Log in for full experience</Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -167,43 +178,47 @@ const SeeMoreStoryDetails = () => {
             </div>
 
             {comments.map((comment) => (
-              <Comment key={comment._id} commentData={comment.commentData} />
+              <Comment key={comment._id} commentId={comment._id} commentData={comment.commentData} isOwner={isOwner} getStoryComments={getStoryComments}/>
             ))}
 
-            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right like-wrapper">
-              <Button
-                className="like-button"
-                variant="info"
-                disabled={likeDisabled}
-                onClick={addLikeHandler}
-              >
-                Like Story
-              </Button>
-              <span className="likes-box">Likes: {likes.length}</span>
-            </div>
-
-            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right">
-              <form className="contact_bg" onSubmit={addCommentHandler}>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="col-md-12">
-                      <textarea
-                        className="textarea"
-                        placeholder="Comment here..."
-                        type="text"
-                        name="comment"
-                        required
-                      ></textarea>
-                    </div>
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                      <button className="add-comment-btn send">
-                        Add comment
-                      </button>
-                    </div>
-                  </div>
+            {isAuthenticated && (
+              <>
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right like-wrapper">
+                  <Button
+                    className="like-button"
+                    variant="info"
+                    disabled={likeDisabled}
+                    onClick={addLikeHandler}
+                  >
+                    Like Story
+                  </Button>
+                  <span className="likes-box">Likes: {likes.length}</span>
                 </div>
-              </form>
-            </div>
+
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 border_right">
+                  <form className="contact_bg" onSubmit={addCommentHandler}>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="col-md-12">
+                          <textarea
+                            className="textarea"
+                            placeholder="Comment here..."
+                            type="text"
+                            name="comment"
+                            required
+                          ></textarea>
+                        </div>
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                          <button className="add-comment-btn send">
+                            Add comment
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

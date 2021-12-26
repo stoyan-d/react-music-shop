@@ -8,3 +8,12 @@
 .comment-text {
     margin: 0;
 }
+
+.delete-comment-box {
+    text-align: right;
+}
+
+.delete-comment-box .delete-comment-btn {
+    border-radius: 30px;
+    margin: 15px 0;
+}
